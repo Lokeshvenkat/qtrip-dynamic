@@ -1,400 +1,259 @@
-/* Reset margin and padding for all elements to maintain consistency */
+/* Reset margin and padding for all elements */
 * {
-  margin: 0px;
-  padding: 0px;
+    margin: 0px;
+    padding: 0px;
 }
 
-/* Set position relative for html and body for positioning child elements */
+/* Set relative positioning for html and body */
 html,
 body {
-  position: relative;
+    position: relative;
 }
 
-/* Body styles:
-   - enable vertical scrolling if needed
-   - ensure minimum height fills viewport */
+/* Enable vertical scrolling and minimum height for body */
 body {
-  overflow-y: auto;
-  min-height: 100vh;
+    overflow-y: auto;
+    min-height: 100vh;
 }
 
-/* Remove default outline on focus for input and textarea for cleaner UI */
+/* Remove default outline on focused inputs and textareas */
 textarea:focus,
 input:focus {
-  outline: none;
+    outline: none;
 }
 
-/* Remove underline from links and inherit text color to blend with surrounding text */
+/* Remove default link color and underline */
 a {
-  color: inherit !important;
-  text-decoration: none !important;
+    color: inherit !important;
+    text-decoration: none !important;
 }
 
-/* Footer styling:
-   - light gray background
-   - full width
-   - vertical padding
-   - muted text color
-   - fixed to bottom of page */
+/* Footer styling fixed at the bottom */
 footer {
-  background: #f1f1f1;
-  width: 100%;
-  padding: 16px 0px;
-  color: #999;
-  position: absolute;
-  bottom: 0;
-  /* width: 100%; */
-  /* height: 2.5rem;   */
+    background: #f1f1f1;
+    width: 100%;
+    padding: 16px 0px;
+    color: #999;
+    position: absolute;
+    bottom: 0;
 }
 
-/* Banner section:
-   - fixed height for visual emphasis
-   - full width
-   - vertical margin to separate from other content */
+/* Large banner container with fixed height and background color */
 .banner {
-  height: 500px;
-  width: 100%;
-  background: #999;
-  margin: 20px 0px;
+    height: 500px;
+    width: 100%;
+    background: #999;
+    margin: 20px 0px;
 }
 
-/* Content wrapper padding to add vertical spacing */
+/* Content section padding for vertical spacing */
 .content {
-  padding: 100px 0px;
-  /* display: flex;
-  flex-wrap: wrap; */
+    padding: 100px 0px;
 }
 
-/* Tile container for images or content blocks:
-   - position relative for absolute children
-   - fills height of parent
-   - rounded corners
-   - pointer cursor for interactivity
-   - smooth transition for hover effects
-   - hides overflow (like scaled images)
-   - flex container to align content at bottom center */
+/* Tile container style for city/activity cards */
 .tile {
-  position: relative;
-  height: 100%;
-  /* width: calc(25% - 20px); */
-  /* padding: 6px; */
-  border-radius: 8px;
-  cursor: pointer;
-  -webkit-transition: 0.2s all;
-  overflow: hidden;
+    position: relative;
+    height: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s all;
+    overflow: hidden;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-/* Tile images:
-   - fill entire tile area
-   - rounded corners matching tile
-   - smooth transition on hover */
+/* Image inside tile fills container and rounds corners */
 .tile img {
-  width: 100%;
-  height: 100%;
-  border-radius: 8px;
-  -webkit-transition: 0.2s all;
-  /* -webkit-filter: brightness(70%); */
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-/* Tile image hover effect:
-   - darken image by reducing brightness
-   - zoom in slightly for visual feedback */
+/* Darken and zoom image on hover */
 .tile img:hover {
-  -webkit-filter: brightness(50%);
-  transform: scale(1.1);
+    filter: brightness(50%);
+    transform: scale(1.1);
 }
 
-/* Text overlay on tile:
-   - absolutely positioned on top
-   - ensures visibility with z-index
-   - uppercase and spaced letters for style */
+/* Text overlay inside tiles, positioned above image */
 .tile-text {
-  position: absolute;
-  z-index: 1;
-  text-transform: uppercase;
-  letter-spacing: 2px;
+    position: absolute;
+    z-index: 1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-/* Hero image section with background:
-   - gradient overlay to darken background for text readability
-   - specific height relative to viewport
-   - full viewport width
-   - center and cover the background image */
+/* Hero image with dark overlay and full width */
 .hero-image {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://images.pexels.com/photos/2422461/pexels-photo-2422461.jpeg?cs=srgb&dl=pexels-josh-hild-2422461.jpg&fm=jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("https://images.pexels.com/photos/2422461/pexels-photo-2422461.jpeg?cs=srgb&dl=pexels-josh-hild-2422461.jpg&fm=jpg");
 
-  height: 50vh;
-  width: 100vw;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
+    height: 50vh;
+    width: 100vw;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
 }
 
-/* Subheading text in hero:
-   - moderately large font size
-   - thin font weight for elegance */
+/* Subtitle text style in hero section */
 .hero-subheading {
-  font-size: 24px;
-  font-weight: 100;
+    font-size: 24px;
+    font-weight: 100;
 }
 
-/* Input field inside hero:
-   - wide width (80%)
-   - fixed height for usability
-   - padding for text comfort
-   - rounded corners
-   - no border for clean look */
+/* Large input field styling in hero section */
 .hero-input {
-  width: 80%;
-  height: 50px;
-  padding: 16px;
-  border-radius: 8px;
-  border: none;
+    width: 80%;
+    height: 50px;
+    padding: 16px;
+    border-radius: 8px;
+    border: none;
 }
 
-/* Navigation links spacing */
+/* Margin between navigation links */
 .nav-link {
-  margin-right: 36px;
+    margin-right: 36px;
 }
 
-/* Activity page card styles:
-   - black text color for readability
-   - relative positioning for layering
-   - fixed height for uniformity
-   - border and rounded corners for card effect
-   - pointer cursor for interactivity
-   - transition for smooth hover
-   - flex layout to place content at bottom center */
+/* Activity card container style */
 .activity-card {
-  color: #000;
-  position: relative;
-  height: 350px;
-  /* width: calc(25% - 20px); */
-  /* padding: 6px; */
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  cursor: pointer;
-  -webkit-transition: 0.2s all;
-  overflow: hidden;
+    color: #000;
+    position: relative;
+    height: 350px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s all;
+    overflow: hidden;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-/* Activity card images:
-   - fill entire card
-   - smooth transition for hover */
+/* Image inside activity card fills container */
 .activity-card img {
-  width: 100%;
-  height: 100%;
-  /* border-radius: 8px; */
-  -webkit-transition: 0.2s all;
-  /* -webkit-filter: brightness(70%); */
+    width: 100%;
+    height: 100%;
+    transition: 0.2s all;
 }
 
-/* Activity card image hover effect:
-   - darken by lowering brightness */
+/* Darken image on hover */
 .activity-card img:hover {
-  -webkit-filter: brightness(50%);
-  /* transform: scale(1.1); */
+    filter: brightness(50%);
 }
 
-/* Adventure detail card:
-   - light border and rounded corners for subtle card look
-   - internal padding for spacing */
+/* Detail card style for adventure details */
 .adventure-detail-card {
-  border: 1px solid #eee;
-  border-radius: 4px;
-  padding: 16px;
-  /* margin: 8px; */
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 16px;
 }
 
-/* Large image in activity detail:
-   - fixed height
-   - full width
-   - pointer cursor to show interactivity
-   - smooth hover transition
-   - slight rounding of corners */
+/* Large image in activity detail */
 .activity-card-image {
-  height: 500px;
-  width: 100%;
-  cursor: pointer;
-  -webkit-transition: 0.2s all;
-  border-radius: 2px;
+    height: 500px;
+    width: 100%;
+    cursor: pointer;
+    transition: 0.2s all;
+    border-radius: 2px;
 }
 
-/* Hover effect for activity card image:
-   - darken image for emphasis */
+/* Darken image on hover in activity detail */
 .activity-card-image:hover {
-  -webkit-filter: brightness(50%);
+    filter: brightness(50%);
 }
 
-/* Experience content list items:
-   - left margin for indentation
-   - no padding */
+/* List styling in experience content */
 .experience-content ul li {
-  margin-left: 16px;
-  padding: 0;
+    margin-left: 16px;
+    padding: 0;
 }
 
-/* Filter bar styling:
-   - top and bottom borders for separation
-   - vertical padding */
+/* Filter bar with top and bottom borders */
 .filter-bar {
-  border-top: 1px solid #999;
-  border-bottom: 1px solid #999;
-  padding: 20px 0px;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+    padding: 20px 0px;
 }
 
-/* Individual filter tile:
-   - right border for separation
-   - horizontal padding */
+/* Individual filter tiles with right border and padding */
 .filter-bar-tile {
-  border-right: 1px solid #999;
-  padding: 0px 20px;
+    border-right: 1px solid #999;
+    padding: 0px 20px;
 }
 
-/* Category filter pill:
-   - orange border and rounded edges for pill shape
-   - internal padding and right margin for spacing */
+/* Category filter pills with orange border and rounded edges */
 .category-filter {
-  border: 1px solid orange;
-  border-radius: 20px;
-  padding: 5px 20px;
-  margin: 10px 10px 10px 0px;
+    border: 1px solid orange;
+    border-radius: 20px;
+    padding: 5px 20px;
+    margin: 10px 10px 10px 0px;
 }
 
-/* Category banner badge:
-   - absolutely positioned top right
-   - padding for size
-   - subtle shadow for depth
-   - minimum width for consistency
-   - white text on orange background
-   - rounded left corners
-   - bold font */
+/* Category banner styling with orange background and shadow */
 .category-banner {
-  position: absolute;
-  /* height: 50px; */
-  padding: 5px 10px;
-  box-shadow: 2px 1px 10px 1px rgba(0, 0, 0, 0.3);
-  /*
-  box-shadow: 0px 9.4px 20.4px rgba(0, 0, 0, 0.13),
-    0px 9.2px 20.6px rgba(0, 0, 0, 0.1); */
-  min-width: 50%;
-  color: #fff;
-  background: rgb(255, 145, 0);
-  top: 0;
-  right: 0;
-  z-index: 1;
-  margin-top: 16px;
-  margin-right: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px 0px 0px 10px;
-  font-weight: bolder;
+    position: absolute;
+    padding: 5px 10px;
+    box-shadow: 2px 1px 10px 1px rgba(0, 0, 0, 0.3);
+    min-width: 50%;
+    color: #fff;
+    background: rgb(255, 145, 0);
+    top: 0;
+    right: 0;
+    z-index: 1;
+    margin-top: 16px;
+    margin-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px 0px 0px 10px;
+    font-weight: bolder;
 }
 
-/* Reserve button:
-   - full width block button
-   - no border
-   - orange background and white text
-   - bold text
-   - padding for size
-   - vertical margin to separate
-   - rounded corners
-   - flex layout to center text
-   - pointer cursor on hover */
+/* Reservation button styling with orange background */
 .reserve-button {
-  width: 100%;
-  border: none;
-  background-color: rgb(255, 145, 0);
-  color: #fff;
-  font-weight: bolder;
-  padding: 15px;
-  margin: 20px 0px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
+    width: 100%;
+    border: none;
+    background-color: rgb(255, 145, 0);
+    color: #fff;
+    font-weight: bolder;
+    padding: 15px;
+    margin: 20px 0px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
 }
 
-/* Hover effect for reserve button: slightly darker orange */
+/* Darker orange on hover for reservation button */
 .reserve-button:hover {
-  background-color: rgb(226, 129, 1);
+    background-color: rgb(226, 129, 1);
 }
 
-/* Remove spinner buttons on number inputs for Chrome, Safari, Edge, Opera */
+/* Remove spinner controls from number inputs in WebKit browsers */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
-/* Remove spinner buttons on number inputs for Firefox */
+/* Remove spinner controls from number inputs in Firefox */
 input[type="number"] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
-/* Reserved banner is hidden by default */
+/* Reserved banner initially hidden */
 #reserved-banner {
-  display: none;
+    display: none;
 }
 
-/* Reservation visit button styling:
-   - orange background and white text
-   - flexbox centered content
-   - padding for size
-   - no wrap on text
-   - rounded edges
-   - pointer cursor on hover */
+/* Reservation visit button style */
 .reservation-visit-button {
-  background-color: rgb(255, 145, 0);
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 10px;
-  white-space: nowrap;
-  border-radius: 20px;
-  cursor: pointer;
-}
-
-/* Hover effect for reservation visit button */
-.reservation-visit-button:hover {
-  background-color: rgb(226, 129, 1);
-}
-
-/* Carousel width set to full container width */
-#carouselExampleIndicators {
-  width: 100%;
-}
-
-/* Sold out reservation panel styling:
-   - light border with rounded corners
-   - internal padding
-   - bottom margin for spacing */
-#reservation-panel-sold-out {
-  border: solid 1px #eee;
-  border-radius: 4px;
-  padding: 16px;
-  margin-bottom: 30px;
-}
-
-/* Available reservation panel styling (same as sold out panel) */
-#reservation-panel-available {
-  border: solid 1px #eee;
-  border-radius: 4px;
-  padding: 16px;
-  margin-bottom: 30px;
-}
