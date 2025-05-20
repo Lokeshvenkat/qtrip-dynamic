@@ -1,24 +1,41 @@
+/* Reset margin and padding for all elements to maintain consistency */
 * {
   margin: 0px;
   padding: 0px;
 }
+
+/* Set position relative for html and body for positioning child elements */
 html,
 body {
   position: relative;
 }
 
+/* Body styles:
+   - enable vertical scrolling if needed
+   - ensure minimum height fills viewport */
 body {
   overflow-y: auto;
   min-height: 100vh;
 }
+
+/* Remove default outline on focus for input and textarea for cleaner UI */
 textarea:focus,
 input:focus {
   outline: none;
 }
+
+/* Remove underline from links and inherit text color to blend with surrounding text */
 a {
   color: inherit !important;
   text-decoration: none !important;
 }
+
+/* Footer styling:
+   - light gray background
+   - full width
+   - vertical padding
+   - muted text color
+   - fixed to bottom of page */
 footer {
   background: #f1f1f1;
   width: 100%;
@@ -30,6 +47,10 @@ footer {
   /* height: 2.5rem;   */
 }
 
+/* Banner section:
+   - fixed height for visual emphasis
+   - full width
+   - vertical margin to separate from other content */
 .banner {
   height: 500px;
   width: 100%;
@@ -37,11 +58,21 @@ footer {
   margin: 20px 0px;
 }
 
+/* Content wrapper padding to add vertical spacing */
 .content {
   padding: 100px 0px;
   /* display: flex;
   flex-wrap: wrap; */
 }
+
+/* Tile container for images or content blocks:
+   - position relative for absolute children
+   - fills height of parent
+   - rounded corners
+   - pointer cursor for interactivity
+   - smooth transition for hover effects
+   - hides overflow (like scaled images)
+   - flex container to align content at bottom center */
 .tile {
   position: relative;
   height: 100%;
@@ -57,6 +88,11 @@ footer {
   justify-content: flex-end;
   align-items: center;
 }
+
+/* Tile images:
+   - fill entire tile area
+   - rounded corners matching tile
+   - smooth transition on hover */
 .tile img {
   width: 100%;
   height: 100%;
@@ -64,36 +100,57 @@ footer {
   -webkit-transition: 0.2s all;
   /* -webkit-filter: brightness(70%); */
 }
+
+/* Tile image hover effect:
+   - darken image by reducing brightness
+   - zoom in slightly for visual feedback */
 .tile img:hover {
   -webkit-filter: brightness(50%);
   transform: scale(1.1);
 }
 
+/* Text overlay on tile:
+   - absolutely positioned on top
+   - ensures visibility with z-index
+   - uppercase and spaced letters for style */
 .tile-text {
   position: absolute;
   z-index: 1;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
+
+/* Hero image section with background:
+   - gradient overlay to darken background for text readability
+   - specific height relative to viewport
+   - full viewport width
+   - center and cover the background image */
 .hero-image {
-  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("https://images.pexels.com/photos/2422461/pexels-photo-2422461.jpeg?cs=srgb&dl=pexels-josh-hild-2422461.jpg&fm=jpg");
 
-  /* Set a specific height */
   height: 50vh;
   width: 100vw;
-  /* Position and center the image to scale nicely on all screens */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
 }
 
+/* Subheading text in hero:
+   - moderately large font size
+   - thin font weight for elegance */
 .hero-subheading {
   font-size: 24px;
   font-weight: 100;
 }
+
+/* Input field inside hero:
+   - wide width (80%)
+   - fixed height for usability
+   - padding for text comfort
+   - rounded corners
+   - no border for clean look */
 .hero-input {
   width: 80%;
   height: 50px;
@@ -102,12 +159,19 @@ footer {
   border: none;
 }
 
+/* Navigation links spacing */
 .nav-link {
   margin-right: 36px;
 }
 
-/* activity page css */
-
+/* Activity page card styles:
+   - black text color for readability
+   - relative positioning for layering
+   - fixed height for uniformity
+   - border and rounded corners for card effect
+   - pointer cursor for interactivity
+   - transition for smooth hover
+   - flex layout to place content at bottom center */
 .activity-card {
   color: #000;
   position: relative;
@@ -125,6 +189,10 @@ footer {
   justify-content: flex-end;
   align-items: center;
 }
+
+/* Activity card images:
+   - fill entire card
+   - smooth transition for hover */
 .activity-card img {
   width: 100%;
   height: 100%;
@@ -132,13 +200,17 @@ footer {
   -webkit-transition: 0.2s all;
   /* -webkit-filter: brightness(70%); */
 }
+
+/* Activity card image hover effect:
+   - darken by lowering brightness */
 .activity-card img:hover {
   -webkit-filter: brightness(50%);
   /* transform: scale(1.1); */
 }
 
-/* activity-detail page css */
-
+/* Adventure detail card:
+   - light border and rounded corners for subtle card look
+   - internal padding for spacing */
 .adventure-detail-card {
   border: 1px solid #eee;
   border-radius: 4px;
@@ -146,6 +218,12 @@ footer {
   /* margin: 8px; */
 }
 
+/* Large image in activity detail:
+   - fixed height
+   - full width
+   - pointer cursor to show interactivity
+   - smooth hover transition
+   - slight rounding of corners */
 .activity-card-image {
   height: 500px;
   width: 100%;
@@ -153,30 +231,56 @@ footer {
   -webkit-transition: 0.2s all;
   border-radius: 2px;
 }
+
+/* Hover effect for activity card image:
+   - darken image for emphasis */
 .activity-card-image:hover {
   -webkit-filter: brightness(50%);
 }
+
+/* Experience content list items:
+   - left margin for indentation
+   - no padding */
 .experience-content ul li {
   margin-left: 16px;
   padding: 0;
 }
+
+/* Filter bar styling:
+   - top and bottom borders for separation
+   - vertical padding */
 .filter-bar {
   border-top: 1px solid #999;
   border-bottom: 1px solid #999;
   padding: 20px 0px;
 }
 
+/* Individual filter tile:
+   - right border for separation
+   - horizontal padding */
 .filter-bar-tile {
   border-right: 1px solid #999;
   padding: 0px 20px;
 }
 
+/* Category filter pill:
+   - orange border and rounded edges for pill shape
+   - internal padding and right margin for spacing */
 .category-filter {
   border: 1px solid orange;
   border-radius: 20px;
   padding: 5px 20px;
   margin: 10px 10px 10px 0px;
 }
+
+/* Category banner badge:
+   - absolutely positioned top right
+   - padding for size
+   - subtle shadow for depth
+   - minimum width for consistency
+   - white text on orange background
+   - rounded left corners
+   - bold font */
 .category-banner {
   position: absolute;
   /* height: 50px; */
@@ -200,6 +304,16 @@ footer {
   font-weight: bolder;
 }
 
+/* Reserve button:
+   - full width block button
+   - no border
+   - orange background and white text
+   - bold text
+   - padding for size
+   - vertical margin to separate
+   - rounded corners
+   - flex layout to center text
+   - pointer cursor on hover */
 .reserve-button {
   width: 100%;
   border: none;
@@ -213,23 +327,36 @@ footer {
   justify-content: center;
   cursor: pointer;
 }
+
+/* Hover effect for reserve button: slightly darker orange */
 .reserve-button:hover {
   background-color: rgb(226, 129, 1);
 }
-/* Chrome, Safari, Edge, Opera */
+
+/* Remove spinner buttons on number inputs for Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* Firefox */
+/* Remove spinner buttons on number inputs for Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+/* Reserved banner is hidden by default */
 #reserved-banner {
   display: none;
 }
+
+/* Reservation visit button styling:
+   - orange background and white text
+   - flexbox centered content
+   - padding for size
+   - no wrap on text
+   - rounded edges
+   - pointer cursor on hover */
 .reservation-visit-button {
   background-color: rgb(255, 145, 0);
   color: #fff;
@@ -242,19 +369,29 @@ input[type="number"] {
   border-radius: 20px;
   cursor: pointer;
 }
+
+/* Hover effect for reservation visit button */
 .reservation-visit-button:hover {
   background-color: rgb(226, 129, 1);
 }
 
+/* Carousel width set to full container width */
 #carouselExampleIndicators {
   width: 100%;
 }
+
+/* Sold out reservation panel styling:
+   - light border with rounded corners
+   - internal padding
+   - bottom margin for spacing */
 #reservation-panel-sold-out {
   border: solid 1px #eee;
   border-radius: 4px;
   padding: 16px;
   margin-bottom: 30px;
 }
+
+/* Available reservation panel styling (same as sold out panel) */
 #reservation-panel-available {
   border: solid 1px #eee;
   border-radius: 4px;
