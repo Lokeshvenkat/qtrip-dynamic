@@ -1,69 +1,52 @@
 import config from "../conf/index.js";
+
+// Fetch all reservations from backend API
 async function fetchReservations() {
-
   try {
-    const response = await fetch(`${config.backendEndpoint}/reservations/`);
-    if (!response.ok) {
-      throw new Error("Failed to fetch reservations");
-    }
-
-    const data = await response.json();
-    return data;
-
-  } catch (error) {
-    console.error("Error fetching reservations:", error);
+    let reservationsProm = await fetch(config.backendEndpoint + "/reservations");
+    let reservationsData = await reservationsProm.json();
+    return reservationsData;
+  } catch (err) {
     return null;
   }
 }
 
+// Add reservations to the reservations table in the DOM
+// If no reservations, show the "no reservation" banner and hide the table
 function addReservationToTable(reservations) {
-  
-    const noReservationBanner = document.getElementById("no-reservation-banner");
-    const reservationTableParent = document.getElementById("reservation-table-parent");
-    const tableBody = document.getElementById("reservation-table");
+  let noResv_banner = document.getElementById("no-reservation-banner");
+  let table_parent = document.getElementById("reservation-table-parent");
 
-    if (!tableBody) {
-        console.error("Table body element not found");
-        return;
-    }
+  if (!reservations || reservations.length === 0) {
+    noResv_banner.style.display = "block";
+    table_parent.style.display = "none";
+  } else {
+    noResv_banner.style.display = "none";
+    table_parent.style.display = "block";
 
-    tableBody.innerHTML = "";
+    let table_body = document.getElementById("reservation-table");
+    table_body.innerHTML = ""; // Clear previous rows to avoid duplication
 
-    if (!reservations || reservations.length === 0) {
-        noReservationBanner.style.display = "block";
-        reservationTableParent.style.display = "none";
-    } else {
-        noReservationBanner.style.display = "none";
-        reservationTableParent.style.display = "block";
-
-        reservations.forEach((reservation) => {
-
-            const row = document.createElement("tr");
-
-
-            const formattedDate = new Date(reservation.date).toLocaleDateString("en-IN");
-            const formattedBookingDate = new Date(reservation.time).toLocaleString("en-IN", { dateStyle: "long" });
-            const formattedBookingTime = new Date(reservation.time).toLocaleString("en-IN", { timeStyle: "medium" });
-
-            row.innerHTML = `
-        <td>${reservation.id}</td>
-        <td>${reservation.name}</td>
-        <td>${reservation.adventureName}</td>
-        <td>${reservation.person}</td>
-        <td>${formattedDate}</td>
-        <td>${reservation.price}</td>
-        <td>${formattedBookingDate}, ${formattedBookingTime}</td>
-        <td id="${reservation.id}">
-          <a href="../detail/?adventure=${reservation.adventure}">
-            <button class="reservation-visit-button" style="border: none;">Visit Adventure</button>
-          </a>
-        </td>
+    reservations.forEach((res) => {
+      let adv_link = `../detail/?adventure=${res.adventure}`;
+      table_body.innerHTML += `
+        <tr>
+          <td><b>${res.id}</b></td>
+          <td>${res.name}</td>
+          <td>${res.adventureName}</td>
+          <td>${res.person}</td>
+          <td>${new Date(res.date).toLocaleDateString("en-IN")}</td>
+          <td>${res.price}</td>
+          <td>${new Date(res.time).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}, ${new Date(res.time).toLocaleTimeString("en-IN")}</td>
+          <td>
+            <button class="reservation-visit-button" id=${res.id}>
+              <a href="${adv_link}">Visit Adventure</a>
+            </button>
+          </td>
+        </tr>
       `;
-
-
-            tableBody.appendChild(row);
-        });
-    }
+    });
+  }
 }
 
 export { fetchReservations, addReservationToTable };
