@@ -36,17 +36,20 @@ function addCityToDOM(id, city, description, image) {
     return;
   }
 
-  const cityCard = document.createElement("div");
-  cityCard.className = "col-12 col-md-6 col-lg-4 mb-4";
-  cityCard.innerHTML = `
-    <a id="${id}" href="./pages/adventures/?city=${id}" class="card text-dark">
+ const cityCard = document.createElement("div");
+cityCard.className = "col-12 col-md-6 col-lg-4 mb-4";
+cityCard.innerHTML = `
+  <div class="card h-100">
+    <a href="./pages/adventures/?city=${id}" style="text-decoration: none; color: inherit;">
       <img src="${image}" class="card-img-top" alt="${city}" />
       <div class="card-body">
         <h5 class="card-title">${city}</h5>
         <p class="card-text">${description}</p>
       </div>
     </a>
-  `;
+  </div>
+`;
+
 
   dataContainer.appendChild(cityCard);
 }
