@@ -1,57 +1,48 @@
 import config from "../conf/index.js";
 
+// Initializes the app by fetching cities and adding them to the DOM
 async function init() {
+  // Fetch list of cities with their details
   let cities = await fetchCities();
-  if (cities && Array.isArray(cities)) {
-    cities.forEach((key) => {
-      addCityToDOM(key.id, key.city, key.description, key.image);
+  console.log(cities);
+
+  // If cities were fetched successfully, add each to the DOM
+  if (cities) {
+    cities.forEach((city) => {
+      addCityToDOM(city.id, city.city, city.description, city.image);
     });
-  } else {
-    console.error("No cities available to display.");
   }
 }
+
+// Fetches the list of cities from backend API and returns the JSON data
 async function fetchCities() {
-
   try {
-    const response = await fetch(`${config.backendEndpoint}/cities`);
-    if(!response.ok) {
-      throw new Error(`Error fetching cities: ${response.statusText}`);
-    }
-    const cities = await response.json();
-    return cities;
-  } catch(error) {
-    if(error) return null;
+    let cityPromise = await fetch(config.backendEndpoint + "/cities");
+    let cityData = await cityPromise.json();
+    console.log(cityPromise);
+    return cityData;
+  } catch (err) {
+    return null;
   }
-
 }
+
+// Creates city card elements and inserts them into the DOM
 function addCityToDOM(id, city, description, image) {
-  const dataContainer = document.getElementById("data");
-  if (!dataContainer) {
-    console.error("No container found with id 'data'");
-    return;
-  }
-
-  if (!id || !city || !description || !image) {
-    console.error("Invalid city data:", { id, city, description, image });
-    return;
-  }
-
- const cityCard = document.createElement("div");
-cityCard.className = "col-12 col-md-6 col-lg-4 mb-4";
-cityCard.innerHTML = `
-  <div class="card h-100">
-    <a href="./pages/adventures/?city=${id}" style="text-decoration: none; color: inherit;">
-      <img src="${image}" class="card-img-top" alt="${city}" />
-      <div class="card-body">
-        <h5 class="card-title">${city}</h5>
-        <p class="card-text">${description}</p>
+  let container = document.createElement("div");
+  container.setAttribute("class", "col-sm-6 col-lg-3 my-4");
+  container.innerHTML = `
+    <a href="pages/adventures/?city=${id}" id="${id}" target="_blank">
+      <div class="tile">
+        <img src="${image}">
+        <div class="tile-text text-center">
+          <h5>${city}</h5>
+          <p>${description}</p>
+        </div>
       </div>
     </a>
-  </div>
-`;
-
-
-  dataContainer.appendChild(cityCard);
+  `;
+  let parent = document.getElementById("data");
+  parent.append(container);
 }
 
 export { init, fetchCities, addCityToDOM };
